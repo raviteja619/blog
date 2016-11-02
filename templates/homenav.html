@@ -1,0 +1,56 @@
+{% load static %}
+<div class="container-fluid">
+	<div class="row">
+	  <div class="page-header">
+		<div class="col-md-6">
+			<a href="{% url 'home' %}">
+				<h1 class="pink-text text-lighten-2 Montserrat">
+					Blogs
+				</h1>
+			</a>
+		</div>
+		<div class="col-md-6">
+		<form action="#" id="search-blog-form">
+			<div class="form-group label-floating search-form-div">
+			  <input name="ppt_title" class="form-control" id="search-feed" type="text" name="search" placeholder="Search Blogs">
+			</div>
+		</form>
+		</div>
+		<div class="col-md-12">
+		<div class="col-md-8">
+		{% if user.is_authenticated %}
+			<a href="{% url 'home' %}" class="btn" style="padding:5px 20px;margin:5px 1px;">Home</a>
+			<a href="#" class="btn" style="padding:5px 20px;margin:5px 1px;">Profile</a>
+			<a href="#" class="btn" style="padding:5px 20px;margin:5px 1px;">My Blogs</a>
+		</div>
+		<div class="col-md-4">
+			<span class="pull-right">
+				{{user.first_name}} | <a href="{% url 'logout' %}">Logout</a>
+			</span>
+		</div>
+		{% else %}
+		</div>
+		<div class="col-md-4">
+			<span class="pull-right">
+				<a href="{% url 'login' %}">Login</a> | <a href="{% url 'register' %}">Signup</a>
+			</span>
+		</div>
+		{% endif %}
+		</div>
+	  </div>
+	</div>
+</div>
+<div style="min-height:120px;"></div>
+<style type="text/css">
+	.page-header{
+		position: fixed;
+		min-width: 100%;
+		background-color: #FEFEFA;
+		z-index: 100;
+		margin: 0 0 20px;
+		padding-bottom: 10px;
+	}
+	.search-form-div {
+	    padding: 35px 15px 5px 30px;
+	}
+</style>

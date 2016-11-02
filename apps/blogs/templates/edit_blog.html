@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load static %}
+{% load staticfiles %}
+{% block title %}
+	<title>Edit Blog</title>
+{% endblock %}
+
+
+{% block home-marquee %}
+<div class="col-md-12" id="edit-blog-div" style="margin-bottom:20px;">
+	<h3 class="teal-text">Edit Blog</h3>
+	<form action="{% url 'blogs_api' %}" method="put" id="edit-blog-form" enctype="multipart/form-data">{% csrf_token %}
+      <div class="row">
+		<div class="col-md-9">
+			<div class="col-md-12 input-group">
+				{{form.creator.as_hidden}}{{form.slug.as_hidden}}{{form.title}}
+			</div>
+			<div class="col-md-12 input-group" style="margin-top:20px;">
+				{{form.body}}
+			</div>
+		</div>
+		<div class="col-md-3" style="text-align:center;padding-top:10%">
+			<button type="submit" class="btn btn-lg green white-text"><i class="fa fa-file-text" aria-hidden="true"></i> Publish</button>
+		</div>
+	  </div>
+    </form>
+</div>
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true"></div>
+{% endblock %}
+
+{% block js-required %}
+{{ form.media }}
+<script type="text/javascript" language="javascript" src="{% get_static_prefix %}js/jquery.toaster.js"></script>
+<script type="text/javascript" src="{% static 'js/app.js' %}"></script>
+<script>
+	$(document).ready(function() {
+		$('#id_title').on('focus', function(e){
+			$.toaster({ priority : 'warning', title : 'Wait!', message : "You can not change the title."});
+		});
+	});
+</script>
+{% endblock %}
+
+{% block css-required %}
+<style type="text/css">
+	.loader{text-align: center;display: none;}
+	.loader.col-md-12 > img{max-height: 50px;}
+</style>
+{% endblock %}

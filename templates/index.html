@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load static %}
+{% load staticfiles %}
+{% block title %}
+	<title>Welcome Home</title>
+{% endblock %}
+
+
+{% block home-marquee %}
+<div class="loader col-md-12"><img src="{% get_static_prefix %}images/pie.gif"></div>
+<div class="col-md-12" id="blog-div">
+	
+</div>
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true"></div>
+{% endblock %}
+
+{% block js-required %}
+<script type="text/javascript" src="{% static 'js/app.js' %}"></script>
+{% endblock %}
+
+{% block css-required %}
+<style type="text/css">
+	.loader{text-align: center;}
+	.loader.col-md-12 > img{max-height: 50px;}
+	.blog-panel {display: inline-block;margin: 15px 35px;}
+	.blog-panel{padding-left: 0px;padding-right: 0px;}
+</style>
+{% endblock %}

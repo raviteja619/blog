@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+  <title> Login</title>
+{% endblock %}
+{% block home-marquee %}
+{% block nav-bar %}{%endblock%}
+<a href="{% url 'home' %}">&lt;&lt;Back to Home</a>
+
+<div class="row">
+  <div class="col-md-5">
+   <h2 class="green-text">Login</h2>
+
+   <form class="form-horizontal" action="{{ app_path }}" method="post" id="login-form">{% csrf_token %}
+     {% csrf_token %}
+     <div class="form-group">
+        <div class="col-md-10">
+          <input placeholder="Email or Username" type="text" name="username" maxlength="254" id="id_username" class="bn-input">
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-md-10">
+          <input placeholder="Password" type="password" name="password" id="id_password" class="bn-input">
+        </div>
+      </div>
+
+       <input type="hidden" name="next" value="{{ next }}" />
+
+     <div class="form-group">
+        <div class="col-md-10">
+          <button type="submit" class="btn purple lighten-5">Login</button>
+          <a href="{% url 'register' %}" class="btn btn-link">Don't have an account?</a>
+          
+        </div>
+      </div>
+   </form>
+   </div>
+</div>
+
+<style>
+</style>
+{% block footer %}{% endblock %}
+{% endblock %}

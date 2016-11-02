@@ -1,0 +1,58 @@
+{% load static %}
+<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        {% block title %}
+        {% endblock %}
+
+        <!-- Custom Fonts -->
+        <link href="{% get_static_prefix %}font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link href='//fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+        <link href="//fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+
+        <link rel="icon" href="{% get_static_prefix %}images/favicon.png" type="image/ico"/>
+        <link rel="stylesheet" type="text/css" href="{% get_static_prefix %}bootstrap/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="{% get_static_prefix %}bootstrap-material-design/dist/css/material.min.css">
+        {% block css-required %}
+        {% endblock %}
+
+        <link rel="stylesheet" type="text/css" href="{% get_static_prefix %}css/style.css?">
+    </head>
+    
+    <!-- Main Body -->
+    <body  id="page-top" class="index" ng-app="demoapp">
+        {% block nav-bar %}{% include 'homenav.html' %}{%endblock%}
+        <div style="min-height:10px;"></div>
+        <!-- Top Nav -->
+        <div class="container">
+            <div class="row" style="min-height:400px">
+                {% block home-marquee %}
+                    <!-- <h2> HOME-MARQUEE </h2> -->
+                {% endblock %}
+            </div>
+        </div>
+        <a href="{% url 'add_new_blog' %}" class="btn btn-fab pink add-blog-float" data-toggle="tooltip" title="Add New Blog"><i class="fa fa-plus white-text"></i></a>
+        <!-- Main Footer -->
+        {% block footer %}{% include 'footer.html' %}{% endblock %}
+    </body>
+
+    {% block url-required %}
+    <script>
+        var ALL_BLOGS = '{% url "blogs_api" %}';
+        var SEARCH_BLOG = '{% url "search_blog_api" %}';
+    </script>
+    {% endblock %}
+    <script type="text/javascript" language="javascript" src="{% get_static_prefix %}jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" language="javascript" src="{% get_static_prefix %}bootstrap/dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" language="javascript" src="{% get_static_prefix %}bootstrap-material-design/dist/js/material.min.js"></script>
+    
+
+    {% block js-required %}
+    {% endblock %}
+    
+</html>

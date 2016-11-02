@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+	<title> Register</title>
+{% endblock %}
+{% block nav-bar %}{%endblock%}
+{% block home-marquee %}
+<a href="{% url 'home' %}">&lt;&lt;Back to Home</a>
+
+<div class="row">
+  <div class="col-md-4">
+   <h2 class="green-text">Registration</h2>
+
+    {% if messages %}
+		{% for message in messages %}
+		<div class="alert alert-dismissible alert-warning">
+	      <button type="button" class="close" data-dismiss="alert">×</button>
+	      {{ message }}
+	    </div>
+		{% endfor %}
+    {% endif %}
+
+    
+   <form class="form-horizontal" action="/register/" method="post">{% csrf_token %}
+	  <fieldset>
+	    <div class="form-group">
+	      <div class="col-md-10">
+	        {{form.first_name}}
+	      </div>
+	    </div>
+	    <div class="form-group">
+	      <div class="col-md-10">
+	        {{form.last_name}}
+	      </div>
+	    </div>
+	    <div class="form-group">
+	      <div class="col-md-10">
+	        {{form.username}}
+	      </div>
+	    </div>
+	    <div class="form-group">
+	      <div class="col-md-10">
+	        {{form.email}}
+	      </div>
+	    </div>
+	    <div class="form-group">
+	      <div class="col-md-10">
+	        {{form.password1}}
+	        {{form.password1.errors}}
+	      </div>
+	    </div>
+	    <div class="form-group">
+	      <div class="col-md-10">
+	        {{form.password2}}
+	        {{form.password2.error}}
+	      </div>
+	    </div>
+	    <div class="form-group">
+	      <div class="col-md-10">
+	        <button type="submit" class="btn btn-lg purple lighten-5">Create</button>
+	        &nbsp;&nbsp;&nbsp;<a href="{% url 'login' %}" > Continue to Login</a>
+	      </div>
+	    </div>
+	  </fieldset>
+	</form>
+  </div>
+  <div clas="col-md-8">
+  <img src="{% get_static_prefix %}images/welcome_home.png" style="margin: 100px 0 0 60px;width: 585px !important;">
+  </div>
+</div>
+{% block footer %}{% endblock %}
+
+ {% endblock %}

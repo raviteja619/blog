@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% load static %}
+{% load staticfiles %}
+{% block title %}
+  <title>Welcome Home</title>
+{% endblock %}
+
+
+{% block home-marquee %}
+<div class="loader col-md-12"><img src="{% get_static_prefix %}images/pie.gif"></div>
+<div class="col-md-12" id="content-div">
+{% if blog %}
+  {% for b in blog %}
+    <div class="col-md-12 head-container">
+      <h1 class="green-text blog-header">{{b.title}}</h1>
+      <a href="{% url 'open_blog_summary' b.slug %}"><h5>{{b.slug}}</h5></a>
+    </div>
+    <div class="col-md-12 blog-body">
+      <p>{{b.body | safe}}</p>
+    </div>
+    <div class="btn-group btn-group-justified btn-group-raised">
+      <a href="javascript:void(0);" class="btn btn-raised green white-text"><i class="fa fa-star" aria-hidden="true"></i> Like</a>
+      <a href="javascript:void(0);" class="btn btn-raised teal white-text"><i class="fa fa-comment" aria-hidden="true"></i> Comment</a>
+      <a href="javascript:void(0);" class="btn btn-raised blue darken-3 white-text"><i class="fa fa-share-alt" aria-hidden="true"></i> Share</a>
+    </div>
+    {% if user == b.creator %}<a href="{% url 'edit_blog' b.slug %}" class="btn btn-link">edit</a> <a href="{% url 'delete_blog' b.id %}" onclick="delete_blog('{{b.id}}');return false;" id="delete-blog" class="btn btn-link">delete</a>{% endif %}
+
+  {% endfor %}
+{% else %}
+  <h1 class="green-text blog-header">The Page you are looking for does not exists.</h1>
+{% endif %}
+</div>
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true"></div>
+{% endblock %}
+
+{% block js-required %}
+<script type="text/javascript" language="javascript" src="{% get_static_prefix %}js/jquery.toaster.js"></script>
+<script type="text/javascript" src="{% static 'js/app.js' %}"></script>
+{% endblock %}
+
+{% block css-required %}
+<style type="text/css">
+  .loader{text-align: center;}
+  .loader.col-md-12 > img{max-height: 50px;}
+  .blog-panel {display: inline-block;margin: 15px 35px;}
+  .blog-panel{padding-left: 0px;padding-right: 0px;}
+  #content-div{min-height: 500px;}
+  .blog-header {
+    border-color: rgba(0, 0, 0, 0.2);
+    font-family: Montserrat;
+    font-size: 5em;
+  }
+  .head-container{
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    text-align: center;
+  }
+</style>
+{% endblock %}
